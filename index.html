@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PRODUCTOS SILFAB FARMACIA PINTAR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-container {
+      width: 100%;
+      padding: 20px;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+    }
+
+    input[type="text"] {
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .results {
+      margin-top: 30px;
+      width: 80%;
+    }
+
+    .product {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .product:last-child {
+      border-bottom: none;
+    }
+
+    .product strong {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar por nombre o código de producto...">
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <script>
+    const productos = [
+      { nombre: "KIT DE PIPETA Y MASCARAS", codigo: "P12", precio: 5340 },
+      { nombre: "MANGUERA PLASTICA PARA PIPETA (ENVASADA)", codigo: "P52", precio: 2690 },
+      { nombre: "MANGUERA PLASTICA CON PICOS DIFERENTES PARA PIPETA (ENVASADA)", codigo: "P52PD", precio: 2690 },
+      { nombre: "KIT DE MASCARAS", codigo: "P59", precio: 3720 },
+      { nombre: "JUEGO DE PIPETA NEBULIZ, MANGUERA CON PICOS IGUALES, MASCARAS CHICAS Y GRANDES", codigo: "P62", precio: 7220 },
+      { nombre: "PIPETA NEBULIZADORA DE DOS PARTES ENVASADA", codigo: "971", precio: 3060 },
+      { nombre: "AEROCAMARA AEROCHAMBER - CAMARA DE RETENCIONANTIESTATICA CON VALVULA (VHG) CON BOQUILLA", codigo: "ACH01", precio: 25930 },
+      { nombre: "AEROCAMARA AEROCHAMBER - CAMARA DE RETENCIONANTIESTATICA CON VALVULA (VHG) CON MASCARILLA MEDIANA (AMARILLA)", codigo: "ACH06", precio: 46320 },
+      { nombre: "ALMOHADILLA TERMICA CON FUNDA DESMONTABLE SMALL SILFAB", codigo: "AL90-GR", precio: 48680 },
+      { nombre: "ALMOHADILLA TERMICA CON FUNDA DESMONTABLE LARGE SILFAB", codigo: "AL91-GR", precio: 53660 },
+      { nombre: "ALMOHADILLA TERMICA CON FUNDA DESMONTABLE CERVICAL SILFAB", codigo: "ALMOHADILLA TERMICA", precio: 51580 },
+      { nombre: "ALMOHADILLA TERMICA CON FUNDA DESMONTABLE CINTURA SILFAB", codigo: "AL93-GR", precio: 57790 },
+      { nombre: "TENSIOMETRO DIGITAL AUTOMATICO DE BRAZO CON MANGA ESTANDAR", codigo: "CHU304", precio: 83850 },
+      { nombre: "TENSIOMETRO DIGITAL AUTOMATICO DE MUÑECA 99 MEMORIAS CON INDICADOR DE FECHA Y HORA", codigo: "CH-617", precio: 66040 },
+      { nombre: "TERMOMETRO INFRARROJO A DISTANCIA", codigo: "YK-IRT2", precio: 68060 },
+      { nombre: "TENSIOMETRO ANEROIDE (COMUN)", codigo: "I1300", precio: 28290 },
+      { nombre: "OXIMETRO DE PULSO STANDARD", codigo: "MD300CN330", precio: 42760 },
+      { nombre: "OXIMETRO DE PULSO DE DEDO", codigo: "YK-80C", precio: 35220 },
+      { nombre: "ORINAL MASCULINO", codigo: "P17", precio: 3310 },
+      { nombre: "ORINAL FEMENINO", codigo: "P18", precio: 3360 },
+      { nombre: "CHATA PLASTICO", codigo: "P19", precio: 6870 },
+      { nombre: "VAPORIZADOR SILFAB", codigo: "V12", precio: 53270 },
+      { nombre: "BALANZA MECANICA (HOJAS VERDES)", codigo: "BM200H", precio: 21920 },
+      { nombre: "BALANZA MECANICA (SIMIL MADERA)", codigo: "BM200M", precio: 21920 },
+      { nombre: "BALANZA ELECTRONICA VIDRIO TURQUESA (MAX 150KG)", codigo: "BE212", precio: 42400 },
+      { nombre: "BALANZA DE COCINA", codigo: "BC300", precio: 30620 }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const resultsContainer = document.getElementById("results");
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filteredProducts = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(query) || producto.codigo.toLowerCase().includes(query)
+      );
+
+      resultsContainer.innerHTML = filteredProducts.map(producto => 
+        `<div class="product">
+          <strong>${producto.nombre}</strong><br>
+          Código: ${producto.codigo}<br>
+          Precio: $${producto.precio.toLocaleString()}
+        </div>`
+      ).join("");
+    });
+  </script>
+
+</body>
+</html>
